@@ -17,6 +17,11 @@ app.use(cors({
 
 const MONGO_URI = process.env.MONGO_URI;
 
+if (!MONGO_URI) {
+    console.error('MONGO_URI environment variable is required');
+    process.exit(1);
+}
+
 // Connect to MongoDB with proper options for serverless environments
 mongoose.connect(MONGO_URI, { 
     useNewUrlParser: true, 

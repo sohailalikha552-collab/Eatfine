@@ -22,17 +22,31 @@ if (!MONGO_URI) {
     process.exit(1);
 }
 
-// Connect to MongoDB with proper options for serverless environments
-mongoose.connect(MONGO_URI, { 
-    useNewUrlParser: true, 
-    useUnifiedTopology: true,
-    serverSelectionTimeoutMS: 30000,  // Keep trying to send operations for 30 seconds
-    socketTimeoutMS: 45000,         // Close sockets after 45 seconds of inactivity
-    bufferCommands: true,           // Enable mongoose buffering
-    bufferMaxEntries: 0,            // Disable mongoose buffering
-    maxPoolSize: 10,                // Maintain up to 10 socket connections
-    serverSelectionTimeoutMS: 60000,  // Increase timeout to 60 seconds
-})
+// Global connection promise to ensure connection is established
+let connectionPromise = null;
+
+// Function to connect to MongoDB with proper options for serverless environments
+function connectDB() {
+    if (connectionPromise) {
+        return connectionPromise;
+    }
+    
+    connectionPromise = mongoose.connect(MONGO_URI, { 
+        useNewUrlParser: true, 
+        useUnifiedTopology: true,
+        serverSelectionTimeoutMS: 60000,  // Increase timeout to 60 seconds
+        socketTimeoutMS: 60000,         // Increase socket timeout to 60 seconds
+        bufferCommands: true,           // Enable mongoose buffering
+        bufferMaxEntries: 0,            // Disable mongoose buffering
+        maxPoolSize: 10,                // Maintain up to 10 socket connections
+        connectTimeoutMS: 60000,        // Increase connection timeout
+        heartbeatFrequencyMS: 30000     // Heartbeat every 30 seconds
+    });
+    
+    return connectionPromise;
+}
+
+connectDB()
 .then(() => {
     console.log('Connected to MongoDB!');
 })
@@ -148,11 +162,8 @@ app.use((req, res, next) => {
 
 
 app.get('/api/check-auth', async (req, res) => {
-    // Wait for database connection
-    if (!dbConnected && mongoose.connection.readyState !== 1) {
-        // Wait a bit for connection to establish
-        await new Promise(resolve => setTimeout(resolve, 1000));
-    }
+    // Ensure database is connected
+    await connectDB();
     
     res.json({ isAuthenticated: !!req.session.userId });
 });
@@ -169,13 +180,10 @@ const isAuthenticated = (req, res, next) => {
 app.post('/api/register', async (req, res) => {
     console.log('Registration attempt:', req.body);
     
-    // Wait for database connection
-    if (!dbConnected && mongoose.connection.readyState !== 1) {
-        // Wait a bit for connection to establish
-        await new Promise(resolve => setTimeout(resolve, 1000));
-    }
-    
     try {
+        // Ensure database is connected
+        await connectDB();
+        
         const { name, email, password } = req.body;
         
         if (!name || !email || !password) {
@@ -210,13 +218,10 @@ app.post('/api/register', async (req, res) => {
 app.post('/api/login', async (req, res) => {
     console.log('Login attempt:', req.body.email);
     
-    // Wait for database connection
-    if (!dbConnected && mongoose.connection.readyState !== 1) {
-        // Wait a bit for connection to establish
-        await new Promise(resolve => setTimeout(resolve, 1000));
-    }
-    
     try {
+        // Ensure database is connected
+        await connectDB();
+        
         const { email, password } = req.body;
         
         const user = await User.findOne({ email });
@@ -245,11 +250,8 @@ app.post('/api/login', async (req, res) => {
 
 
 app.post('/api/logout', async (req, res) => {
-    // Wait for database connection
-    if (!dbConnected && mongoose.connection.readyState !== 1) {
-        // Wait a bit for connection to establish
-        await new Promise(resolve => setTimeout(resolve, 1000));
-    }
+    // Ensure database is connected
+    await connectDB();
     
     req.session.destroy((err) => {
         if (err) {
@@ -263,6 +265,9 @@ app.post('/api/logout', async (req, res) => {
 
 app.post('/api/cart/add', isAuthenticated, async (req, res) => {
     try {
+        // Ensure database is connected
+        await connectDB();
+        
         const { productId, name, price, quantity = 1, image, category } = req.body;
         
         if (!productId || !name || !price) {
@@ -299,6 +304,9 @@ app.post('/api/cart/add', isAuthenticated, async (req, res) => {
 
 app.get('/api/cart', isAuthenticated, async (req, res) => {
     try {
+        // Ensure database is connected
+        await connectDB();
+        
         const cart = await Cart.findOne({ userId: req.session.userId });
         
         if (!cart) {
@@ -315,6 +323,9 @@ app.get('/api/cart', isAuthenticated, async (req, res) => {
 
 app.put('/api/cart/update', isAuthenticated, async (req, res) => {
     try {
+        // Ensure database is connected
+        await connectDB();
+        
         const { productId, quantity } = req.body;
         
         if (!productId || quantity < 0) {
@@ -349,6 +360,9 @@ app.put('/api/cart/update', isAuthenticated, async (req, res) => {
 
 app.delete('/api/cart/remove', isAuthenticated, async (req, res) => {
     try {
+        // Ensure database is connected
+        await connectDB();
+        
         const { productId } = req.body;
         
         if (!productId) {
@@ -375,6 +389,9 @@ app.delete('/api/cart/remove', isAuthenticated, async (req, res) => {
 
 app.delete('/api/cart/clear', isAuthenticated, async (req, res) => {
     try {
+        // Ensure database is connected
+        await connectDB();
+        
         const result = await Cart.deleteOne({ userId: req.session.userId });
         
         if (result.deletedCount === 0) {
@@ -390,6 +407,9 @@ app.delete('/api/cart/clear', isAuthenticated, async (req, res) => {
 
 app.post('/api/orders/create', isAuthenticated, async (req, res) => {
     try {
+        // Ensure database is connected
+        await connectDB();
+        
         const { address, phone } = req.body;
         
         const cart = await Cart.findOne({ userId: req.session.userId });
@@ -421,6 +441,9 @@ app.post('/api/orders/create', isAuthenticated, async (req, res) => {
 
 app.get('/api/orders', isAuthenticated, async (req, res) => {
     try {
+        // Ensure database is connected
+        await connectDB();
+        
         const orders = await Order.find({ userId: req.session.userId })
             .sort({ orderDate: -1 });
         
@@ -433,6 +456,9 @@ app.get('/api/orders', isAuthenticated, async (req, res) => {
 
 app.get('/api/orders/:orderId', isAuthenticated, async (req, res) => {
     try {
+        // Ensure database is connected
+        await connectDB();
+        
         const order = await Order.findOne({
             _id: req.params.orderId,
             userId: req.session.userId

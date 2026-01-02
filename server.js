@@ -37,7 +37,6 @@ function connectDB() {
         serverSelectionTimeoutMS: 60000,  // Increase timeout to 60 seconds
         socketTimeoutMS: 60000,         // Increase socket timeout to 60 seconds
         bufferCommands: true,           // Enable mongoose buffering
-        bufferMaxEntries: 0,            // Disable mongoose buffering
         maxPoolSize: 10,                // Maintain up to 10 socket connections
         connectTimeoutMS: 60000,        // Increase connection timeout
         heartbeatFrequencyMS: 30000     // Heartbeat every 30 seconds

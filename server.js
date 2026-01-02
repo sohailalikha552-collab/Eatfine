@@ -16,23 +16,40 @@ app.use(cors({
 }));
 
 const MONGO_URI = process.env.MONGO_URI;
+
+// Connect to MongoDB with proper options for serverless environments
 mongoose.connect(MONGO_URI, { 
     useNewUrlParser: true, 
-    useUnifiedTopology: true 
+    useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 50000,  // Keep trying to send operations for 50 seconds
+    socketTimeoutMS: 45000,         // Close sockets after 45 seconds of inactivity
+    bufferCommands: false,          // Disable mongoose buffering
+    bufferMaxEntries: 0,            // Disable mongoose buffering
+    maxPoolSize: 10,                // Maintain up to 10 socket connections
 })
 .then(() => {
-    console.log('Connected to MongoDB Atlas!');
-    mongoose.connection.db.listCollections().toArray((err, collections) => {
-        if (err) {
-            console.error('Error listing collections:', err);
-        } else {
-            console.log('Available collections:', collections.map(c => c.name));
-        }
-    });
+    console.log('Connected to MongoDB!');
 })
 .catch(err => {
-    console.error('Error connecting to MongoDB Atlas:', err);
+    console.error('Error connecting to MongoDB:', err);
     console.error('Connection string used:', MONGO_URI);
+});
+
+// Handle connection events
+mongoose.connection.on('error', (err) => {
+    console.error('MongoDB connection error:', err);
+});
+
+mongoose.connection.on('disconnected', () => {
+    console.log('MongoDB disconnected');
+});
+
+// Graceful shutdown
+process.on('SIGINT', () => {
+    mongoose.connection.close(() => {
+        console.log('MongoDB connection closed through app termination');
+        process.exit(0);
+    });
 });
 
 app.use(session({
@@ -42,7 +59,8 @@ app.use(session({
     store: MongoStore.create({ 
         mongoUrl: MONGO_URI,
         autoRemove: 'interval',
-        autoRemoveInterval: 10
+        autoRemoveInterval: 10,
+        touchAfter: 24 * 3600 // Resave interval
     }),
     cookie: { 
         secure: false,

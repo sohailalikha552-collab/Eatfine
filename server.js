@@ -26,9 +26,9 @@ if (!MONGO_URI) {
 mongoose.connect(MONGO_URI, { 
     useNewUrlParser: true, 
     useUnifiedTopology: true,
-    serverSelectionTimeoutMS: 50000,  // Keep trying to send operations for 50 seconds
+    serverSelectionTimeoutMS: 30000,  // Keep trying to send operations for 30 seconds
     socketTimeoutMS: 45000,         // Close sockets after 45 seconds of inactivity
-    bufferCommands: false,          // Disable mongoose buffering
+    bufferCommands: true,           // Enable mongoose buffering for serverless
     bufferMaxEntries: 0,            // Disable mongoose buffering
     maxPoolSize: 10,                // Maintain up to 10 socket connections
 })
@@ -126,11 +126,6 @@ const orderSchema = new mongoose.Schema({
 const Order = mongoose.model('Order', orderSchema);
 
 app.use((req, res, next) => {
-    // Check if database is connected
-    if (mongoose.connection.readyState !== 1 && req.path.startsWith('/api/')) {
-        return res.status(500).json({ error: 'Database connection not ready' });
-    }
-    
     console.log('Request:', {
         method: req.method,
         path: req.path,
@@ -142,21 +137,11 @@ app.use((req, res, next) => {
 
 
 app.get('/api/check-auth', (req, res) => {
-    // Check if database is connected
-    if (mongoose.connection.readyState !== 1) {
-        return res.status(500).json({ error: 'Database connection not ready' });
-    }
-    
     res.json({ isAuthenticated: !!req.session.userId });
 });
 
 
-const isAuthenticated = async (req, res, next) => {
-    // Wait for mongoose to connect if not already connected
-    if (mongoose.connection.readyState !== 1) {
-        return res.status(500).json({ error: 'Database connection not ready' });
-    }
-    
+const isAuthenticated = (req, res, next) => {
     if (req.session.userId) {
         next();
     } else {
@@ -166,11 +151,6 @@ const isAuthenticated = async (req, res, next) => {
 
 app.post('/api/register', async (req, res) => {
     console.log('Registration attempt:', req.body);
-    
-    // Check if database is connected
-    if (mongoose.connection.readyState !== 1) {
-        return res.status(500).json({ error: 'Database connection not ready' });
-    }
     
     try {
         const { name, email, password } = req.body;
@@ -207,11 +187,6 @@ app.post('/api/register', async (req, res) => {
 app.post('/api/login', async (req, res) => {
     console.log('Login attempt:', req.body.email);
     
-    // Check if database is connected
-    if (mongoose.connection.readyState !== 1) {
-        return res.status(500).json({ error: 'Database connection not ready' });
-    }
-    
     try {
         const { email, password } = req.body;
         
@@ -241,11 +216,6 @@ app.post('/api/login', async (req, res) => {
 
 
 app.post('/api/logout', (req, res) => {
-    // Check if database is connected
-    if (mongoose.connection.readyState !== 1) {
-        return res.status(500).json({ error: 'Database connection not ready' });
-    }
-    
     req.session.destroy((err) => {
         if (err) {
             console.error('Logout error:', err);
@@ -257,11 +227,6 @@ app.post('/api/logout', (req, res) => {
 });
 
 app.post('/api/cart/add', isAuthenticated, async (req, res) => {
-    // Check if database is connected
-    if (mongoose.connection.readyState !== 1) {
-        return res.status(500).json({ error: 'Database connection not ready' });
-    }
-    
     try {
         const { productId, name, price, quantity = 1, image, category } = req.body;
         
@@ -298,11 +263,6 @@ app.post('/api/cart/add', isAuthenticated, async (req, res) => {
 });
 
 app.get('/api/cart', isAuthenticated, async (req, res) => {
-    // Check if database is connected
-    if (mongoose.connection.readyState !== 1) {
-        return res.status(500).json({ error: 'Database connection not ready' });
-    }
-    
     try {
         const cart = await Cart.findOne({ userId: req.session.userId });
         
@@ -319,11 +279,6 @@ app.get('/api/cart', isAuthenticated, async (req, res) => {
 });
 
 app.put('/api/cart/update', isAuthenticated, async (req, res) => {
-    // Check if database is connected
-    if (mongoose.connection.readyState !== 1) {
-        return res.status(500).json({ error: 'Database connection not ready' });
-    }
-    
     try {
         const { productId, quantity } = req.body;
         
@@ -358,11 +313,6 @@ app.put('/api/cart/update', isAuthenticated, async (req, res) => {
 });
 
 app.delete('/api/cart/remove', isAuthenticated, async (req, res) => {
-    // Check if database is connected
-    if (mongoose.connection.readyState !== 1) {
-        return res.status(500).json({ error: 'Database connection not ready' });
-    }
-    
     try {
         const { productId } = req.body;
         
@@ -389,11 +339,6 @@ app.delete('/api/cart/remove', isAuthenticated, async (req, res) => {
 });
 
 app.delete('/api/cart/clear', isAuthenticated, async (req, res) => {
-    // Check if database is connected
-    if (mongoose.connection.readyState !== 1) {
-        return res.status(500).json({ error: 'Database connection not ready' });
-    }
-    
     try {
         const result = await Cart.deleteOne({ userId: req.session.userId });
         
@@ -409,11 +354,6 @@ app.delete('/api/cart/clear', isAuthenticated, async (req, res) => {
 });
 
 app.post('/api/orders/create', isAuthenticated, async (req, res) => {
-    // Check if database is connected
-    if (mongoose.connection.readyState !== 1) {
-        return res.status(500).json({ error: 'Database connection not ready' });
-    }
-    
     try {
         const { address, phone } = req.body;
         
@@ -445,11 +385,6 @@ app.post('/api/orders/create', isAuthenticated, async (req, res) => {
 });
 
 app.get('/api/orders', isAuthenticated, async (req, res) => {
-    // Check if database is connected
-    if (mongoose.connection.readyState !== 1) {
-        return res.status(500).json({ error: 'Database connection not ready' });
-    }
-    
     try {
         const orders = await Order.find({ userId: req.session.userId })
             .sort({ orderDate: -1 });
@@ -462,11 +397,6 @@ app.get('/api/orders', isAuthenticated, async (req, res) => {
 });
 
 app.get('/api/orders/:orderId', isAuthenticated, async (req, res) => {
-    // Check if database is connected
-    if (mongoose.connection.readyState !== 1) {
-        return res.status(500).json({ error: 'Database connection not ready' });
-    }
-    
     try {
         const order = await Order.findOne({
             _id: req.params.orderId,

@@ -1,6 +1,15 @@
 {
   "version": 2,
   "name": "eat-fine",
+  "builds": [
+    {
+      "src": "server.js",
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": ["public/**"]
+      }
+    }
+  ],
   "routes": [
     {
       "src": "/(.*)",
@@ -8,8 +17,6 @@
     }
   ],
   "env": {
-    "MONGO_URI": "@mongo_uri",
-    "SESSION_SECRET": "63f4945d921d599f27ae4fdf5bada3f1",
     "NODE_ENV": "production"
   },
   "functions": {

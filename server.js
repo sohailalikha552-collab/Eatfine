@@ -28,9 +28,10 @@ mongoose.connect(MONGO_URI, {
     useUnifiedTopology: true,
     serverSelectionTimeoutMS: 30000,  // Keep trying to send operations for 30 seconds
     socketTimeoutMS: 45000,         // Close sockets after 45 seconds of inactivity
-    bufferCommands: true,           // Enable mongoose buffering for serverless
+    bufferCommands: true,           // Enable mongoose buffering
     bufferMaxEntries: 0,            // Disable mongoose buffering
     maxPoolSize: 10,                // Maintain up to 10 socket connections
+    serverSelectionTimeoutMS: 60000,  // Increase timeout to 60 seconds
 })
 .then(() => {
     console.log('Connected to MongoDB!');
@@ -40,13 +41,23 @@ mongoose.connect(MONGO_URI, {
     console.error('Connection string used:', MONGO_URI);
 });
 
+// Connection ready state
+let dbConnected = false;
+
 // Handle connection events
 mongoose.connection.on('error', (err) => {
     console.error('MongoDB connection error:', err);
+    dbConnected = false;
 });
 
 mongoose.connection.on('disconnected', () => {
     console.log('MongoDB disconnected');
+    dbConnected = false;
+});
+
+mongoose.connection.once('open', () => {
+    console.log('MongoDB connection established');
+    dbConnected = true;
 });
 
 // Graceful shutdown
@@ -136,7 +147,13 @@ app.use((req, res, next) => {
 });
 
 
-app.get('/api/check-auth', (req, res) => {
+app.get('/api/check-auth', async (req, res) => {
+    // Wait for database connection
+    if (!dbConnected && mongoose.connection.readyState !== 1) {
+        // Wait a bit for connection to establish
+        await new Promise(resolve => setTimeout(resolve, 1000));
+    }
+    
     res.json({ isAuthenticated: !!req.session.userId });
 });
 
@@ -151,6 +168,12 @@ const isAuthenticated = (req, res, next) => {
 
 app.post('/api/register', async (req, res) => {
     console.log('Registration attempt:', req.body);
+    
+    // Wait for database connection
+    if (!dbConnected && mongoose.connection.readyState !== 1) {
+        // Wait a bit for connection to establish
+        await new Promise(resolve => setTimeout(resolve, 1000));
+    }
     
     try {
         const { name, email, password } = req.body;
@@ -187,6 +210,12 @@ app.post('/api/register', async (req, res) => {
 app.post('/api/login', async (req, res) => {
     console.log('Login attempt:', req.body.email);
     
+    // Wait for database connection
+    if (!dbConnected && mongoose.connection.readyState !== 1) {
+        // Wait a bit for connection to establish
+        await new Promise(resolve => setTimeout(resolve, 1000));
+    }
+    
     try {
         const { email, password } = req.body;
         
@@ -215,7 +244,13 @@ app.post('/api/login', async (req, res) => {
 });
 
 
-app.post('/api/logout', (req, res) => {
+app.post('/api/logout', async (req, res) => {
+    // Wait for database connection
+    if (!dbConnected && mongoose.connection.readyState !== 1) {
+        // Wait a bit for connection to establish
+        await new Promise(resolve => setTimeout(resolve, 1000));
+    }
+    
     req.session.destroy((err) => {
         if (err) {
             console.error('Logout error:', err);

@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Gallery - DineFine</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar section-cont">
+            <a href="index.html" class="logo">
+                <h2 class="logotext">🍴 DineFine</h2>
+            </a>
+            <button class="menu-toggle" id="menuToggle">☰</button>
+            <ul class="nav" id="navMenu">
+                <li class="navitem"><a href="index.html" class="navi">Home</a></li>
+                <li class="navitem"><a href="about.html" class="navi">About</a></li>
+                <li class="navitem"><a href="menu.html" class="navi">Menu</a></li>
+                <li class="navitem"><a href="gallery.html" class="navi active">Gallery</a></li>
+                <li class="navitem"><a href="contact.html" class="navi">Contact Us</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <a href="login.html" class="btn-login">Login</a>
+                <a href="signup.html" class="btn-signup">Sign Up</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="page-content">
+
+        <section class="page-hero gallery-hero">
+            <div class="hero-overlay">
+                <h1 class="hero-title">Gallery</h1>
+                <p class="hero-subtitle">A Visual Journey Through Our Culinary World</p>
+            </div>
+        </section>
+
+
+        <section class="gallery-filter-section">
+            <div class="section-cont">
+                <div class="gallery-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="food">Food</button>
+                    <button class="filter-btn" data-filter="interior">Restaurant Interior</button>
+                    <button class="filter-btn" data-filter="chefs">Lead Chefs</button>
+                    <button class="filter-btn" data-filter="servers">Our Servers</button>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="gallery-main">
+            <div class="section-cont">
+                <div class="gallery-grid-modern">
+
+                    <div class="gallery-item-modern" data-category="food">
+                        <img src="images/1.jpg" alt="Signature Dish">
+                        <div class="gallery-overlay">
+                            <h3>Signature Dishes</h3>
+                            <p>Culinary Excellence</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item-modern" data-category="food">
+                        <img src="images/2.webp" alt="Gourmet Selection">
+                        <div class="gallery-overlay">
+                            <h3>Gourmet Selection</h3>
+                            <p>Chef's Masterpiece</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item-modern" data-category="food">
+                        <img src="images/3.jpg" alt="Exquisite Plating">
+                        <div class="gallery-overlay">
+                            <h3>Fine Dining</h3>
+                            <p>Taste Perfection</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item-modern" data-category="food">
+                        <img src="images/biryani.jpg" alt="Signature Biryani">
+                        <div class="gallery-overlay">
+                            <h3>Signature Biryani</h3>
+                            <p>Most Popular</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item-modern" data-category="food">
+                        <img src="images/specials.jpg" alt="Chef Specials">
+                        <div class="gallery-overlay">
+                            <h3>Daily Specials</h3>
+                            <p>Fresh & Delicious</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item-modern" data-category="food">
+                        <img src="images/mandi.png" alt="Traditional Mandi">
+                        <div class="gallery-overlay">
+                            <h3>Traditional Mandi</h3>
+                            <p>Arabian Delight</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item-modern" data-category="food">
+                        <img src="images/steak.png" alt="Premium Steak">
+                        <div class="gallery-overlay">
+                            <h3>Premium Steaks</h3>
+                            <p>Grilled to Perfection</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item-modern" data-category="food">
+                        <img src="images/pizza.png" alt="Wood-fired Pizza">
+                        <div class="gallery-overlay">
+                            <h3>Wood-fired Pizza</h3>
+                            <p>Italian Authentic</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item-modern" data-category="food">
+                        <img src="images/drinks.png" alt="Fresh Beverages">
+                        <div class="gallery-overlay">
+                            <h3>Fresh Beverages</h3>
+                            <p>Refreshing Selection</p>
+                        </div>
+                    </div>
+
+
+                    <div class="gallery-item-modern" data-category="interior">
+                        <img src="images/gallery1.jpg" alt="Restaurant Interior">
+                        <div class="gallery-overlay">
+                            <h3>Elegant Ambiance</h3>
+                            <p>Modern Luxury</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item-modern" data-category="interior">
+                        <img src="images/gallery3.jpg" alt="Dining Area">
+                        <div class="gallery-overlay">
+                            <h3>Dining Space</h3>
+                            <p>Comfortable Seating</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item-modern" data-category="interior">
+                        <img src="images/gallery2.jpg" alt="Restaurant View">
+                        <div class="gallery-overlay">
+                            <h3>Welcoming Atmosphere</h3>
+                            <p>Perfect Setting</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item-modern" data-category="interior">
+                        <img src="images/gallery4.jpg" alt="Interior Design">
+                        <div class="gallery-overlay">
+                            <h3>Beautiful Interior</h3>
+                            <p>Tastefully Decorated</p>
+                        </div>
+                    </div>
+
+
+                    <div class="gallery-item-modern" data-category="chefs">
+                        <img src="images/about1.jpg" alt="Chef Mohsin Ahmad">
+                        <div class="gallery-overlay">
+                            <h3>Chef Mohsin Ahmad</h3>
+                            <p>Head Chef - Arabic Cuisine</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item-modern" data-category="chefs">
+                        <img src="images/gallery5.jpg" alt="Chef Marco Rossi">
+                        <div class="gallery-overlay">
+                            <h3>Chef Marco Rossi</h3>
+                            <p>Italian Cuisine Specialist</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item-modern" data-category="chefs">
+                        <img src="images/gallery6.jpg" alt="Chef Ahmed Hassan">
+                        <div class="gallery-overlay">
+                            <h3>Chef Ahmed Hassan</h3>
+                            <p>Sous Chef - Grill Master</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item-modern" data-category="chefs">
+                        <img src="images/gallery7.jpg" alt="Chef Sarah Johnson">
+                        <div class="gallery-overlay">
+                            <h3>Chef Sarah Johnson</h3>
+                            <p>Pastry Chef</p>
+                        </div>
+                    </div>
+
+
+                    <div class="gallery-item-modern" data-category="servers">
+                        <img src="images/gallery8.jpg" alt="Server Team">
+                        <div class="gallery-overlay">
+                            <h3>Rashid</h3>
+                            <p>Senior Server</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item-modern" data-category="servers">
+                        <img src="images/gallery9.jpg" alt="Server Team">
+                        <div class="gallery-overlay">
+                            <h3>James Mitchell</h3>
+                            <p>Head Waiter</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item-modern" data-category="servers">
+                        <img src="images/gallery10.jpg" alt="Server Team">
+                        <div class="gallery-overlay">
+                            <h3>Omar Abdullah</h3>
+                            <p>Service Manager</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item-modern" data-category="servers">
+                        <img src="images/gallery11.jpg" alt="Server Team">
+                        <div class="gallery-overlay">
+                            <h3>Emily</h3>
+                            <p>Server - Fine Dining</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item-modern" data-category="servers">
+                        <img src="images/gallery13.jpg" alt="Server Team">
+                        <div class="gallery-overlay">
+                            <h3>Aisha </h3>
+                            <p>Server - Catering</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item-modern" data-category="servers">
+                        <img src="images/gallery12.jpg" alt="Server Team">
+                        <div class="gallery-overlay">
+                            <h3>David Thompson</h3>
+                            <p>Server - Special Events</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <div class="image-modal" id="imageModal">
+            <span class="modal-close">&times;</span>
+            <img class="modal-content" id="modalImage" alt="Gallery Image">
+            <div class="modal-caption" id="modalCaption"></div>
+            <button class="modal-nav prev" id="prevBtn" aria-label="Previous Image">&#10094;</button>
+            <button class="modal-nav next" id="nextBtn" aria-label="Next Image">&#10095;</button>
+        </div>
+
+
+        <section class="team-section">
+            <div class="section-cont">
+                <h2 class="section-title center">Meet Our Amazing Team</h2>
+                <div class="title-underline center"></div>
+                <p class="section-subtitle center">The talented people behind your extraordinary dining experience</p>
+                
+                <div class="team-categories">
+                    <div class="team-category">
+                        <h3 class="team-category-title">
+                            <i class="fas fa-hat-chef"></i>
+                            Lead Chefs
+                        </h3>
+                        <div class="team-grid">
+                            <div class="team-member">
+                                <div class="team-member-image">
+                                    <i class="fas fa-user-circle"></i>
+                                </div>
+                                <h4>Chef Mohsin Ahmad</h4>
+                                <p class="team-role">Head Chef - Arabic Cuisine</p>
+                                <p class="team-bio">15+ years specializing in traditional Middle Eastern dishes</p>
+                            </div>
+                            
+                            <div class="team-member">
+                                <div class="team-member-image">
+                                    <i class="fas fa-user-circle"></i>
+                                </div>
+                                <h4>Chef Marco Rossi</h4>
+                                <p class="team-role">Italian Cuisine Specialist</p>
+                                <p class="team-bio">Trained in Rome, master of authentic Italian cooking</p>
+                            </div>
+                            
+                            <div class="team-member">
+                                <div class="team-member-image">
+                                    <i class="fas fa-user-circle"></i>
+                                </div>
+                                <h4>Chef Ahmed Hassan</h4>
+                                <p class="team-role">Sous Chef - Grill Master</p>
+                                <p class="team-bio">Expert in charcoal grilling and meat preparation</p>
+                            </div>
+                            
+                            <div class="team-member">
+                                <div class="team-member-image">
+                                    <i class="fas fa-user-circle"></i>
+                                </div>
+                                <h4>Chef Sarah Johnson</h4>
+                                <p class="team-role">Pastry Chef</p>
+                                <p class="team-bio">Award-winning dessert creations and baking expertise</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="team-category">
+                        <h3 class="team-category-title">
+                            <i class="fas fa-concierge-bell"></i>
+                            Our Service Team
+                        </h3>
+                        <div class="team-grid">
+                            <div class="team-member">
+                                <div class="team-member-image">
+                                    <i class="fas fa-user-circle"></i>
+                                </div>
+                                <h4>Rashid</h4>
+                                <p class="team-role">Senior Server</p>
+                                <p class="team-bio">8 years of exceptional customer service</p>
+                            </div>
+                            
+                            <div class="team-member">
+                                <div class="team-member-image">
+                                    <i class="fas fa-user-circle"></i>
+                                </div>
+                                <h4>James Mitchell</h4>
+                                <p class="team-role">Head Waiter</p>
+                                <p class="team-bio">Fine dining service expert with 10+ years experience</p>
+                            </div>
+                            
+                            <div class="team-member">
+                                <div class="team-member-image">
+                                    <i class="fas fa-user-circle"></i>
+                                </div>
+                                <h4>Omar Abdullah</h4>
+                                <p class="team-role">Service Manager</p>
+                                <p class="team-bio">Ensures every guest receives outstanding service</p>
+                            </div>
+                            
+                            <div class="team-member">
+                                <div class="team-member-image">
+                                    <i class="fas fa-user-circle"></i>
+                                </div>
+                                <h4>Emily</h4>
+                                <p class="team-role">Server - Fine Dining</p>
+                                <p class="team-bio">Specializes in premium dining experiences</p>
+                            </div>
+                            
+                            <div class="team-member">
+                                <div class="team-member-image">
+                                    <i class="fas fa-user-circle"></i>
+                                </div>
+                                <h4>Aisha</h4>
+                                <p class="team-role">Server - Catering</p>
+                                <p class="team-bio">Expert in events and special occasions</p>
+                            </div>
+                            
+                            <div class="team-member">
+                                <div class="team-member-image">
+                                    <i class="fas fa-user-circle"></i>
+                                </div>
+                                <h4>David Thompson</h4>
+                                <p class="team-role">Server - Special Events</p>
+                                <p class="team-bio">Creates memorable private dining experiences</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="instagram-section">
+            <div class="section-cont">
+                <h2 class="section-title center">Follow Us on Instagram</h2>
+                <div class="title-underline center"></div>
+                <p class="instagram-text">Share your dining experience with us using <strong>#DineFineMoments</strong></p>
+                <div class="social-links">
+                    <a href="#" class="social-link-large" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                        <span>@dinefine_official</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="section-cont">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3 class="footer-logo">🍴 DineFine</h3>
+                    <p>Where every meal is a masterpiece</p>
+                </div>
+                <div class="footer-links-container">
+                    <div class="footer-column">
+                        <h4>Quick Links</h4>
+                        <a href="index.html">Home</a>
+                        <a href="about.html">About</a>
+                        <a href="menu.html">Menu</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>More</h4>
+                        <a href="gallery.html">Gallery</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 DineFine. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <style>
+        .team-section {
+            padding: 80px 0;
+            background: var(--light-bg);
+        }
+
+        .team-categories {
+            margin-top: 60px;
+        }
+
+        .team-category {
+            margin-bottom: 60px;
+        }
+
+        .team-category-title {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .team-category-title i {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .team-member {
+            background: var(--text-light);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .team-member-image {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-size: 4rem;
+        }
+
+        .team-member h4 {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .team-role {
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        .team-bio {
+            color: var(--text-gray);
+            line-height: 1.6;
+            font-size: 0.9rem;
+        }
+
+        @media screen and (max-width: 768px) {
+            .team-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 30px;
+            }
+
+            .team-category-title {
+                font-size: 1.5rem;
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

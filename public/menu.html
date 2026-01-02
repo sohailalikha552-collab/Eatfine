@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Menu - DineFine</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar section-cont">
+            <a href="index.html" class="logo">
+                <h2 class="logotext">🍴 DineFine</h2>
+            </a>
+            <button class="menu-toggle" id="menuToggle">☰</button>
+            <ul class="nav" id="navMenu">
+                <li class="navitem"><a href="index.html" class="navi">Home</a></li>
+                <li class="navitem"><a href="about.html" class="navi">About</a></li>
+                <li class="navitem"><a href="menu.html" class="navi active">Menu</a></li>
+                <li class="navitem"><a href="gallery.html" class="navi">Gallery</a></li>
+                <li class="navitem"><a href="contact.html" class="navi">Contact Us</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <a href="login.html" class="btn-login">Login</a>
+                <a href="signup.html" class="btn-signup">Sign Up</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="page-content">
+
+        <section class="page-hero menu-hero">
+            <div class="hero-overlay">
+                <h1 class="hero-title">Our Menu</h1>
+                <p class="hero-subtitle">Discover Our Culinary Delights</p>
+            </div>
+        </section>
+
+
+        <section class="menu-filter-section">
+            <div class="section-cont">
+                <div class="menu-filters">
+                    <button class="filter-btn active" data-category="all">All Dishes</button>
+                    <button class="filter-btn" data-category="arabic">Arabic</button>
+                    <button class="filter-btn" data-category="american">American</button>
+                    <button class="filter-btn" data-category="italian">Italian</button>
+                    <button class="filter-btn" data-category="specials">Specials</button>
+                    <button class="filter-btn" data-category="beverages">Beverages</button>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="menu-category" data-category="arabic">
+            <div class="section-cont">
+                <h2 class="section-title">Arabic Cuisine</h2>
+                <div class="title-underline"></div>
+                <p class="section-subtitle">Traditional flavors from the heart of the Middle East</p>
+                <div class="menu-items-grid">
+                    <div class="menu-card">
+                        <div class="menu-card-image">
+                            <img src="images/menu1.jpg" alt="Lamb Mandi">
+                            <span class="menu-badge">Popular</span>
+                        </div>
+                        <div class="menu-card-content">
+                            <h3 class="menu-card-title">Lamb Mandi</h3>
+                            <p class="menu-card-desc">Traditional Arabian rice dish with tender lamb, aromatic spices, raisins, and roasted nuts</p>
+                            <div class="menu-card-footer">
+                                <span class="menu-price">AED 75</span>
+                                <button class="add-to-cart-btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="menu-card-image">
+                            <img src="images/menu2.jpg" alt="Chicken Kabsa">
+                        </div>
+                        <div class="menu-card-content">
+                            <h3 class="menu-card-title">Chicken Kabsa</h3>
+                            <p class="menu-card-desc">Fragrant long-grain rice with perfectly spiced chicken, raisins, and toasted almonds</p>
+                            <div class="menu-card-footer">
+                                <span class="menu-price">AED 65</span>
+                                <button class="add-to-cart-btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="menu-card-image">
+                            <img src="images/menu3.jpg" alt="Mixed Shawarma">
+                        </div>
+                        <div class="menu-card-content">
+                            <h3 class="menu-card-title">Mixed Shawarma Platter</h3>
+                            <p class="menu-card-desc">Chicken and beef shawarma with garlic sauce, tahini, pickles, and fresh saj bread</p>
+                            <div class="menu-card-footer">
+                                <span class="menu-price">AED 45</span>
+                                <button class="add-to-cart-btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="menu-card-image">
+                            <img src="images/menu4.jpg" alt="Mezze Platter">
+                        </div>
+                        <div class="menu-card-content">
+                            <h3 class="menu-card-title">Mezze Platter</h3>
+                            <p class="menu-card-desc">Assorted appetizers: hummus, baba ghanoush, falafel, tabbouleh, and warm pita</p>
+                            <div class="menu-card-footer">
+                                <span class="menu-price">AED 55</span>
+                                <button class="add-to-cart-btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="menu-category" data-category="american">
+            <div class="section-cont">
+                <h2 class="section-title">American Cuisine</h2>
+                <div class="title-underline"></div>
+                <p class="section-subtitle">Classic American favorites with a gourmet twist</p>
+                <div class="menu-items-grid">
+                    <div class="menu-card">
+                        <div class="menu-card-image">
+                            <img src="images/steak.png" alt="Ribeye Steak">
+                            <span class="menu-badge chef-special">Chef's Special</span>
+                        </div>
+                        <div class="menu-card-content">
+                            <h3 class="menu-card-title">Premium Ribeye Steak</h3>
+                            <p class="menu-card-desc">300g prime ribeye, charcoal-grilled to perfection with herb butter, mashed potatoes, and grilled vegetables</p>
+                            <div class="menu-card-footer">
+                                <span class="menu-price">AED 120</span>
+                                <button class="add-to-cart-btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="menu-card-image">
+                            <img src="images/menu5.jpg" alt="Gourmet Burger">
+                            <span class="menu-badge">Popular</span>
+                        </div>
+                        <div class="menu-card-content">
+                            <h3 class="menu-card-title">DineFine Signature Burger</h3>
+                            <p class="menu-card-desc">200g wagyu beef patty, aged cheddar, crispy bacon, caramelized onions, and special sauce</p>
+                            <div class="menu-card-footer">
+                                <span class="menu-price">AED 55</span>
+                                <button class="add-to-cart-btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="menu-card-image">
+                            <img src="images/menu6.jpg" alt="BBQ Ribs">
+                        </div>
+                        <div class="menu-card-content">
+                            <h3 class="menu-card-title">Slow-Cooked BBQ Ribs</h3>
+                            <p class="menu-card-desc">Fall-off-the-bone pork ribs glazed with smoky BBQ sauce, served with coleslaw and fries</p>
+                            <div class="menu-card-footer">
+                                <span class="menu-price">AED 85</span>
+                                <button class="add-to-cart-btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="menu-card-image">
+                            <img src="images/menu7.jpg" alt="Buffalo Wings">
+                        </div>
+                        <div class="menu-card-content">
+                            <h3 class="menu-card-title">Buffalo Chicken Wings</h3>
+                            <p class="menu-card-desc">Crispy wings tossed in buffalo sauce, served with blue cheese dip and celery sticks</p>
+                            <div class="menu-card-footer">
+                                <span class="menu-price">AED 40</span>
+                                <button class="add-to-cart-btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="menu-category" data-category="italian">
+            <div class="section-cont">
+                <h2 class="section-title">Italian Cuisine</h2>
+                <div class="title-underline"></div>
+                <p class="section-subtitle">Authentic Italian recipes made with love</p>
+                <div class="menu-items-grid">
+                    <div class="menu-card">
+                        <div class="menu-card-image">
+                            <img src="images/pizza.png" alt="Margherita Pizza">
+                            <span class="menu-badge">Popular</span>
+                        </div>
+                        <div class="menu-card-content">
+                            <h3 class="menu-card-title">Margherita Pizza</h3>
+                            <p class="menu-card-desc">Wood-fired thin crust with San Marzano tomatoes, buffalo mozzarella, and fresh basil</p>
+                            <div class="menu-card-footer">
+                                <span class="menu-price">AED 50</span>
+                                <button class="add-to-cart-btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="menu-card-image">
+                            <img src="images/menu8.jpg" alt="Truffle Carbonara">
+                            <span class="menu-badge chef-special">Chef's Special</span>
+                        </div>
+                        <div class="menu-card-content">
+                            <h3 class="menu-card-title">Truffle Carbonara</h3>
+                            <p class="menu-card-desc">Fresh fettuccine with crispy pancetta, parmesan cream sauce, and aromatic black truffle oil</p>
+                            <div class="menu-card-footer">
+                                <span class="menu-price">AED 70</span>
+                                <button class="add-to-cart-btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="menu-card-image">
+                            <img src="images/menu9.jpg" alt="Mushroom Risotto">
+                        </div>
+                        <div class="menu-card-content">
+                            <h3 class="menu-card-title">Wild Mushroom Risotto</h3>
+                            <p class="menu-card-desc">Creamy Arborio rice with porcini, shiitake, and button mushrooms, finished with parmesan</p>
+                            <div class="menu-card-footer">
+                                <span class="menu-price">AED 60</span>
+                                <button class="add-to-cart-btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="menu-card-image">
+                            <img src="images/menu10.jpg" alt="Lasagna">
+                        </div>
+                        <div class="menu-card-content">
+                            <h3 class="menu-card-title">Classic Lasagna</h3>
+                            <p class="menu-card-desc">Layers of pasta, rich meat sauce, béchamel, and melted mozzarella, baked to perfection</p>
+                            <div class="menu-card-footer">
+                                <span class="menu-price">AED 58</span>
+                                <button class="add-to-cart-btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="menu-category" data-category="specials">
+            <div class="section-cont">
+                <h2 class="section-title">Chef's Specials</h2>
+                <div class="title-underline"></div>
+                <p class="section-subtitle">Signature creations by Chef Mohsin</p>
+                <div class="menu-items-grid">
+                    <div class="menu-card">
+                        <div class="menu-card-image">
+                            <img src="images/menu11.jpg" alt="Charcoal Mixed Grill">
+                            <span class="menu-badge chef-special">Chef's Special</span>
+                        </div>
+                        <div class="menu-card-content">
+                            <h3 class="menu-card-title">Charcoal Mixed Grill</h3>
+                            <p class="menu-card-desc">Selection of lamb chops, chicken tikka, beef kebabs, and prawns, grilled over charcoal</p>
+                            <div class="menu-card-footer">
+                                <span class="menu-price">AED 95</span>
+                                <button class="add-to-cart-btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="menu-card-image">
+                            <img src="images/biryani.jpg" alt="Signature Biryani">
+                            <span class="menu-badge chef-special">Chef's Special</span>
+                        </div>
+                        <div class="menu-card-content">
+                            <h3 class="menu-card-title">DineFine Signature Biryani</h3>
+                            <p class="menu-card-desc">Chef Mohsin's secret recipe biryani with tender meat, fragrant rice, and exotic spices</p>
+                            <div class="menu-card-footer">
+                                <span class="menu-price">AED 78</span>
+                                <button class="add-to-cart-btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="menu-card-image">
+                            <img src="images/menu12.jpg" alt="Seafood Platter">
+                        </div>
+                        <div class="menu-card-content">
+                            <h3 class="menu-card-title">Seafood Extravaganza</h3>
+                            <p class="menu-card-desc">Grilled lobster tail, jumbo prawns, calamari, and fish fillet with lemon butter sauce</p>
+                            <div class="menu-card-footer">
+                                <span class="menu-price">AED 135</span>
+                                <button class="add-to-cart-btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="menu-category" data-category="beverages">
+            <div class="section-cont">
+                <h2 class="section-title">Beverages</h2>
+                <div class="title-underline"></div>
+                <p class="section-subtitle">Refresh yourself with our drink selection</p>
+                <div class="menu-items-grid">
+                    <div class="menu-card">
+                        <div class="menu-card-image">
+                            <img src="images/tea_no_background (1).png" alt="Special Tea">
+                            <span class="menu-badge">Signature</span>
+                        </div>
+                        <div class="menu-card-content">
+                            <h3 class="menu-card-title">DineFine Special Tea</h3>
+                            <p class="menu-card-desc">Aromatic blend of premium tea leaves with cardamom, saffron, and mint</p>
+                            <div class="menu-card-footer">
+                                <span class="menu-price">AED 15</span>
+                                <button class="add-to-cart-btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="menu-card-image">
+                            <img src="images/drinks.png" alt="Fresh Juices">
+                            <span class="menu-badge">Popular</span>
+                        </div>
+                        <div class="menu-card-content">
+                            <h3 class="menu-card-title">Fresh Juice Selection</h3>
+                            <p class="menu-card-desc">Orange, mango, watermelon, pomegranate, or mixed fruit - freshly squeezed to order</p>
+                            <div class="menu-card-footer">
+                                <span class="menu-price">AED 20</span>
+                                <button class="add-to-cart-btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="menu-card-image">
+                            <img src="images/menu13.jpg" alt="Arabic Coffee">
+                        </div>
+                        <div class="menu-card-content">
+                            <h3 class="menu-card-title">Traditional Arabic Coffee</h3>
+                            <p class="menu-card-desc">Authentic Arabic coffee brewed with cardamom, served with dates</p>
+                            <div class="menu-card-footer">
+                                <span class="menu-price">AED 18</span>
+                                <button class="add-to-cart-btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="menu-card-image">
+                            <img src="images/menu14.jpg" alt="Smoothies">
+                        </div>
+                        <div class="menu-card-content">
+                            <h3 class="menu-card-title">Fresh Fruit Smoothies</h3>
+                            <p class="menu-card-desc">Blended fresh fruits with yogurt and honey - choose from strawberry, mango, or mixed berry</p>
+                            <div class="menu-card-footer">
+                                <span class="menu-price">AED 25</span>
+                                <button class="add-to-cart-btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="menu-card-image">
+                            <img src="images/menu15.jpg" alt="Mocktails">
+                        </div>
+                        <div class="menu-card-content">
+                            <h3 class="menu-card-title">Signature Mocktails</h3>
+                            <p class="menu-card-desc">Refreshing non-alcoholic cocktails - mojito, passion fruit cooler, or tropical punch</p>
+                            <div class="menu-card-footer">
+                                <span class="menu-price">AED 28</span>
+                                <button class="add-to-cart-btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="section-cont">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3 class="footer-logo">🍴 DineFine</h3>
+                    <p>Where every meal is a masterpiece</p>
+                </div>
+                <div class="footer-links-container">
+                    <div class="footer-column">
+                        <h4>Quick Links</h4>
+                        <a href="index.html">Home</a>
+                        <a href="about.html">About</a>
+                        <a href="menu.html">Menu</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>More</h4>
+                        <a href="gallery.html">Gallery</a>
+                        <a href="contact.html">Contact</a>
+                        <a href="#">Careers</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 DineFine. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

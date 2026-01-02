@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Contact Us - DineFine</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar section-cont">
+            <a href="index.html" class="logo">
+                <h2 class="logotext">🍴DineFine</h2>
+            </a>
+            <button class="menu-toggle" id="menuToggle">☰</button>
+            <ul class="nav" id="navMenu">
+                <li class="navitem"><a href="index.html" class="navi">Home</a></li>
+                <li class="navitem"><a href="about.html" class="navi">About</a></li>
+                <li class="navitem"><a href="menu.html" class="navi">Menu</a></li>
+                <li class="navitem"><a href="gallery.html" class="navi">Gallery</a></li>
+                <li class="navitem"><a href="contact.html" class="navi active">Contact Us</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <a href="login.html" class="btn-login">Login</a>
+                <a href="signup.html" class="btn-signup">Sign Up</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="page-content">
+
+        <section class="page-hero contact-hero">
+            <div class="hero-overlay">
+                <h1 class="hero-title">Get In Touch</h1>
+                <p class="hero-subtitle">We'd Love to Hear From You</p>
+            </div>
+        </section>
+
+
+        <section class="contact-info-section">
+            <div class="section-cont">
+                <div class="contact-info-grid">
+                    <div class="contact-info-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3>Our Location</h3>
+                        <p>Al Ain, Abu Dhabi</p>
+                        <p>United Arab Emirates</p>
+                    </div>
+
+                    <div class="contact-info-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h3>Call Us</h3>
+                        <p>+971 50 123 4567</p>
+                        <p>+971 50 765 4321</p>
+                    </div>
+
+                    <div class="contact-info-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Email Us</h3>
+                        <p>info@dinefine.com</p>
+                        <p>reservations@dinefine.com</p>
+                    </div>
+
+                    <div class="contact-info-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3>Opening Hours</h3>
+                        <p>Monday - Sunday</p>
+                        <p>10:00 AM - 12:00 AM</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="contact-form-section-full">
+            <div class="section-cont">
+                <div class="contact-form-wrapper">
+                    <div class="contact-form-header">
+                        <h2 class="section-title center">Send Us a Message</h2>
+                        <div class="title-underline center"></div>
+                        <p class="section-subtitle center">Have a question or special request? We're here to help!</p>
+                    </div>
+                    
+                    <form id="contactForm" class="contact-form-centered">
+                        <div class="form-row">
+                            <div class="form-group-contact">
+                                <label for="firstName">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group-contact">
+                                <label for="lastName">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group-contact">
+                                <label for="contactEmail">Email *</label>
+                                <input type="email" id="contactEmail" name="email" required>
+                            </div>
+                            <div class="form-group-contact">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                        </div>
+
+                        <div class="form-group-contact">
+                            <label for="subject">Subject *</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Select a subject</option>
+                                <option value="reservation">Reservation Inquiry</option>
+                                <option value="feedback">Feedback</option>
+                                <option value="catering">Catering Services</option>
+                                <option value="event">Private Events</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group-contact">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" rows="6" required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            <span>Send Message</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                    <div id="formMessage" class="form-message"></div>
+
+
+                    <div class="quick-contact-actions">
+                        <div class="quick-action">
+                            <i class="fas fa-phone-alt"></i>
+                            <h4>Need Immediate Assistance?</h4>
+                            <p>For urgent inquiries or same-day reservations</p>
+                            <a href="tel:+971501234567" class="action-btn">
+                                <i class="fas fa-phone"></i>
+                                Call Now
+                            </a>
+                        </div>
+
+                        <div class="quick-action">
+                            <i class="fas fa-calendar-check"></i>
+                            <h4>Make a Reservation</h4>
+                            <p>Book your table for an unforgettable experience</p>
+                            <a href="#" class="action-btn">
+                                <i class="fas fa-utensils"></i>
+                                Reserve Table
+                            </a>
+                        </div>
+
+                        <div class="quick-action">
+                            <i class="fas fa-envelope-open-text"></i>
+                            <h4>Email Us Directly</h4>
+                            <p>Send us an email for detailed inquiries</p>
+                            <a href="mailto:info@dinefine.com" class="action-btn">
+                                <i class="fas fa-envelope"></i>
+                                Send Email
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="visit-us-section">
+            <div class="section-cont">
+                <h2 class="section-title center">Visit Us</h2>
+                <div class="title-underline center"></div>
+                <p class="section-subtitle center">Find us in the heart of Al Ain, Abu Dhabi</p>
+                
+                <div class="location-details">
+                    <div class="location-card">
+                        <div class="location-icon">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </div>
+                        <h3>Address</h3>
+                        <p>DineFine Restaurant</p>
+                        <p>Al Ain City Center</p>
+                        <p>Al Ain, Abu Dhabi</p>
+                        <p>United Arab Emirates</p>
+                    </div>
+
+                    <div class="location-card">
+                        <div class="location-icon">
+                            <i class="fas fa-parking"></i>
+                        </div>
+                        <h3>Parking</h3>
+                        <p>Complimentary parking available</p>
+                        <p>Easy access from main entrance</p>
+                        <p>Valet service upon request</p>
+                    </div>
+
+                    <div class="location-card">
+                        <div class="location-icon">
+                            <i class="fas fa-directions"></i>
+                        </div>
+                        <h3>Getting Here</h3>
+                        <p>15 minutes from Al Ain Airport</p>
+                        <p>Central location near major landmarks</p>
+                        <p>Public transportation accessible</p>
+                    </div>
+                </div>
+
+                <div class="directions-cta">
+                    <a href="https://maps.google.com" target="_blank" class="directions-btn">
+                        <i class="fas fa-route"></i>
+                        Get Directions
+                    </a>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="faq-section">
+            <div class="section-cont">
+                <h2 class="section-title center">Frequently Asked Questions</h2>
+                <div class="title-underline center"></div>
+                
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Do I need a reservation?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>While walk-ins are welcome, we highly recommend making a reservation, especially during weekends and holidays, to ensure your preferred time and seating.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Do you offer delivery services?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Yes! We offer delivery through major food delivery platforms. You can also call us directly to place a takeaway order.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Can you accommodate dietary restrictions?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Absolutely! We offer vegetarian, vegan, and gluten-free options. Please inform our staff about any allergies or dietary requirements.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Do you host private events?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Yes! We have private dining areas perfect for celebrations, corporate events, and special occasions. Contact us for custom menu options and pricing.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Is parking available?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Yes, we offer complimentary parking for all our guests with easy access from the main entrance.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>What are your payment options?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>We accept cash, all major credit cards, and digital payment methods including Apple Pay and Samsung Pay.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="social-connect-section">
+            <div class="section-cont">
+                <h2 class="section-title center">Stay Connected</h2>
+                <div class="title-underline center"></div>
+                <p class="section-subtitle center">Follow us on social media for updates, special offers, and behind-the-scenes content</p>
+                
+                <div class="social-grid">
+                    <a href="#" class="social-card" target="_blank">
+                        <i class="fab fa-facebook"></i>
+                        <h4>Facebook</h4>
+                        <p>@DineFineDubai</p>
+                    </a>
+
+                    <a href="#" class="social-card" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                        <h4>Instagram</h4>
+                        <p>@dinefine_official</p>
+                    </a>
+
+                    <a href="#" class="social-card" target="_blank">
+                        <i class="fab fa-twitter"></i>
+                        <h4>Twitter</h4>
+                        <p>@DineFineUAE</p>
+                    </a>
+
+                    <a href="#" class="social-card" target="_blank">
+                        <i class="fab fa-youtube"></i>
+                        <h4>YouTube</h4>
+                        <p>DineFine Restaurant</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="section-cont">
+            <div class="footer-content">
+                <p>&copy; 2024 DineFine. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <style>
+        .contact-form-section-full {
+            padding: 80px 0;
+            background: var(--light-bg);
+        }
+
+        .contact-form-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .contact-form-header {
+            margin-bottom: 40px;
+        }
+
+        .contact-form-centered {
+            background: var(--text-light);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .quick-contact-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .quick-action {
+            background: var(--text-light);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+
+        .quick-action:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .quick-action i {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .quick-action h4 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .quick-action p {
+            color: var(--text-gray);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: var(--text-light);
+            border-radius: 25px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .visit-us-section {
+            padding: 80px 0;
+        }
+
+        .location-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .location-card {
+            background: var(--text-light);
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+
+        .location-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .location-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-size: 2rem;
+        }
+
+        .location-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .location-card p {
+            color: var(--text-gray);
+            line-height: 1.8;
+            margin: 5px 0;
+        }
+
+        .directions-cta {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .directions-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: var(--text-light);
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .directions-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(200,16,46,0.3);
+        }
+
+        .social-connect-section {
+            padding: 80px 0;
+            background: var(--light-bg);
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .social-card {
+            background: var(--text-light);
+            padding: 40px 20px;
+            border-radius: 15px;
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: var(--shadow-md);
+        }
+
+        .social-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .social-card i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .social-card:nth-child(1) i {
+            color: #1877F2;
+        }
+
+        .social-card:nth-child(2) i {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+           
+            -webkit-text-fill-color: transparent;
+        }
+
+        .social-card:nth-child(3) i {
+            color: #1DA1F2;
+        }
+
+        .social-card:nth-child(4) i {
+            color: #FF0000;
+        }
+
+        .social-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            font-size: 1.2rem;
+        }
+
+        .social-card p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        @media screen and (max-width: 768px) {
+            .contact-form-centered {
+                padding: 30px 20px;
+            }
+
+            .quick-contact-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .location-details {
+                grid-template-columns: 1fr;
+            }
+
+            .social-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .social-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <script src="js/main.js"></script>
+
+</body>
+</html>

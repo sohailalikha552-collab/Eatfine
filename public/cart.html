@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - DineFine</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar section-cont">
+            <a href="index.html" class="logo">
+                <h2 class="logotext">🍴 DineFine</h2>
+            </a>
+            <button class="menu-toggle" id="menuToggle">☰</button>
+            <ul class="nav" id="navMenu">
+                <li class="navitem"><a href="index.html" class="navi">Home</a></li>
+                <li class="navitem"><a href="about.html" class="navi">About</a></li>
+                <li class="navitem"><a href="menu.html" class="navi">Menu</a></li>
+                <li class="navitem"><a href="gallery.html" class="navi">Gallery</a></li>
+                <li class="navitem"><a href="contact.html" class="navi">Contact Us</a></li>
+                <li class="navitem"><a href="cart.html" class="navi active">Cart</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <a href="login.html" class="btn-login">Login</a>
+                <a href="signup.html" class="btn-signup">Sign Up</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="page-content">
+
+        <section class="page-hero cart-hero">
+            <div class="hero-overlay">
+                <h1 class="hero-title">Your Cart</h1>
+                <p class="hero-subtitle">Review and manage your selected items</p>
+            </div>
+        </section>
+
+
+        <section class="cart-section section-cont">
+            <div class="cart-container">
+                <div class="cart-items-container">
+                    <h2 class="section-title">Cart Items</h2>
+                    <div class="cart-items-list" id="cartItemsList">
+
+                        <div class="empty-cart-message">
+                            <i class="fas fa-shopping-cart"></i>
+                            <h3>Your cart is empty</h3>
+                            <p>Looks like you haven't added any items to your cart yet.</p>
+                            <a href="menu.html" class="btn-primary">Browse Menu</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cart-summary">
+                    <h2 class="section-title">Order Summary</h2>
+                    <div class="summary-content">
+                        <div class="summary-row">
+                            <span>Subtotal</span>
+                            <span id="cartSubtotal">AED 0.00</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Delivery Fee</span>
+                            <span id="deliveryFee">AED 5.00</span>
+                        </div>
+                        <div class="summary-divider"></div>
+                        <div class="summary-row total-row">
+                            <span>Total</span>
+                            <span id="cartTotal">AED 5.00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="checkout-section">
+                        <h3>Delivery Information</h3>
+                        <form id="checkoutForm">
+                            <div class="form-group">
+                                <label for="address">Delivery Address</label>
+                                <textarea id="address" name="address" placeholder="Enter your delivery address" required></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+                            </div>
+                            
+                            <button type="submit" class="btn-checkout" id="checkoutBtn" disabled>
+                                <i class="fas fa-shopping-bag"></i> Proceed to Checkout
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="section-cont">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3 class="footer-logo">🍴 DineFine</h3>
+                    <p>Where every meal is a masterpiece</p>
+                </div>
+                <div class="footer-links-container">
+                    <div class="footer-column">
+                        <h4>Quick Links</h4>
+                        <a href="index.html">Home</a>
+                        <a href="about.html">About</a>
+                        <a href="menu.html">Menu</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>More</h4>
+                        <a href="gallery.html">Gallery</a>
+                        <a href="contact.html">Contact</a>
+                        <a href="#">Careers</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 DineFine. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/index.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check authentication status
+            checkAuthStatus();
+            
+            // Load cart items
+            loadCartItems();
+            
+            // Update navigation buttons based on auth status
+            if (typeof updateNavButtons === 'function') {
+                updateNavButtons();
+            }
+            
+            // Add event listener to checkout form
+            const checkoutForm = document.getElementById('checkoutForm');
+            if (checkoutForm) {
+                checkoutForm.addEventListener('submit', handleCheckout);
+            }
+        });
+        
+        // Check authentication status
+        async function checkAuthStatus() {
+            try {
+                const response = await fetch('/api/check-auth', {
+                    credentials: 'include' // Include session cookies with request
+                });
+                const data = await response.json();
+                
+                if (!data.isAuthenticated) {
+                    // Redirect to login if not authenticated
+                    window.location.href = 'login.html';
+                }
+            } catch (error) {
+                console.error('Error checking auth status:', error);
+                window.location.href = 'login.html';
+            }
+        }
+        
+        // Load cart items from backend
+        async function loadCartItems() {
+            try {
+                const response = await fetch('/api/cart', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    credentials: 'include' // Include session cookies with request
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    displayCartItems(data.items);
+                    updateCartSummary(data.total);
+                } else {
+                    console.error('Failed to load cart items');
+                    showNotification('Failed to load cart items', 'error');
+                }
+            } catch (error) {
+                console.error('Error loading cart items:', error);
+                showNotification('Error loading cart items', 'error');
+            }
+        }
+        
+        // Display cart items in the UI
+        function displayCartItems(items) {
+            const cartItemsList = document.getElementById('cartItemsList');
+            
+            if (!cartItemsList) return;
+            
+            if (items.length === 0) {
+                cartItemsList.innerHTML = `
+                    <div class="empty-cart-message">
+                        <i class="fas fa-shopping-cart"></i>
+                        <h3>Your cart is empty</h3>
+                        <p>Looks like you haven't added any items to your cart yet.</p>
+                        <a href="menu.html" class="btn-primary">Browse Menu</a>
+                    </div>
+                `;
+                document.getElementById('checkoutBtn').disabled = true;
+                return;
+            }
+            
+            let cartItemsHTML = '';
+            
+            items.forEach(item => {
+                cartItemsHTML += `
+                    <div class="cart-item" data-product-id="${item.productId}">
+                        <div class="cart-item-image">
+                            <img src="${item.image || 'images/default-food.jpg'}" alt="${item.name}">
+                        </div>
+                        <div class="cart-item-details">
+                            <h3 class="cart-item-name">${item.name}</h3>
+                            <p class="cart-item-price">AED ${item.price.toFixed(2)}</p>
+                        </div>
+                        <div class="cart-item-quantity">
+                            <button class="quantity-btn decrease-btn" data-product-id="${item.productId}">-</button>
+                            <span class="quantity-value" data-product-id="${item.productId}">${item.quantity}</span>
+                            <button class="quantity-btn increase-btn" data-product-id="${item.productId}">+</button>
+                        </div>
+                        <div class="cart-item-total">
+                            AED ${(item.price * item.quantity).toFixed(2)}
+                        </div>
+                        <button class="remove-item-btn" data-product-id="${item.productId}">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+            });
+            
+            cartItemsList.innerHTML = cartItemsHTML;
+            
+            // Add event listeners to quantity buttons
+            document.querySelectorAll('.quantity-btn.decrease-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const productId = this.getAttribute('data-product-id');
+                    updateQuantity(productId, -1);
+                });
+            });
+            
+            document.querySelectorAll('.quantity-btn.increase-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const productId = this.getAttribute('data-product-id');
+                    updateQuantity(productId, 1);
+                });
+            });
+            
+            // Add event listeners to remove buttons
+            document.querySelectorAll('.remove-item-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const productId = this.closest('.cart-item').getAttribute('data-product-id');
+                    removeItem(productId);
+                });
+            });
+            
+            document.getElementById('checkoutBtn').disabled = false;
+        }
+        
+        // Update item quantity
+        async function updateQuantity(productId, change) {
+            try {
+                const quantityElement = document.querySelector(`.quantity-value[data-product-id="${productId}"]`);
+                let currentQuantity = parseInt(quantityElement.textContent);
+                
+                let newQuantity = currentQuantity + change;
+                if (newQuantity < 0) newQuantity = 0;
+                
+                const response = await fetch('/api/cart/update', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    credentials: 'include', // Include session cookies with request
+                    body: JSON.stringify({
+                        productId: productId,
+                        quantity: newQuantity
+                    })
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    
+                    if (newQuantity === 0) {
+                        // Remove the item from the UI if quantity is 0
+                        document.querySelector(`.cart-item[data-product-id="${productId}"]`).remove();
+                        showNotification('Item removed from cart', 'success');
+                    } else {
+                        // Update the quantity display
+                        quantityElement.textContent = newQuantity;
+                        
+                        // Update the item total in the UI
+                        const cartItem = document.querySelector(`.cart-item[data-product-id="${productId}"]`);
+                        const price = parseFloat(cartItem.querySelector('.cart-item-price').textContent.replace('AED ', ''));
+                        cartItem.querySelector('.cart-item-total').textContent = `AED ${(price * newQuantity).toFixed(2)}`;
+                    }
+                    
+                    // Reload the cart to update the summary
+                    loadCartItems();
+                } else {
+                    const errorData = await response.json();
+                    showNotification(errorData.error || 'Failed to update quantity', 'error');
+                }
+            } catch (error) {
+                console.error('Error updating quantity:', error);
+                showNotification('Error updating quantity', 'error');
+            }
+        }
+        
+        // Remove item from cart
+        async function removeItem(productId) {
+            try {
+                const response = await fetch('/api/cart/remove', {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    credentials: 'include', // Include session cookies with request
+                    body: JSON.stringify({
+                        productId: productId
+                    })
+                });
+                
+                if (response.ok) {
+                    // Remove the item from the UI
+                    document.querySelector(`.cart-item[data-product-id="${productId}"]`).remove();
+                    showNotification('Item removed from cart', 'success');
+                    
+                    // Reload the cart to update the summary
+                    loadCartItems();
+                } else {
+                    const errorData = await response.json();
+                    showNotification(errorData.error || 'Failed to remove item', 'error');
+                }
+            } catch (error) {
+                console.error('Error removing item:', error);
+                showNotification('Error removing item', 'error');
+            }
+        }
+        
+        // Update cart summary
+        function updateCartSummary(subtotal) {
+            const deliveryFee = 5.00; // Fixed delivery fee
+            const total = subtotal + deliveryFee;
+            
+            document.getElementById('cartSubtotal').textContent = `AED ${subtotal.toFixed(2)}`;
+            document.getElementById('cartTotal').textContent = `AED ${total.toFixed(2)}`;
+        }
+        
+        // Handle checkout process
+        async function handleCheckout(event) {
+            event.preventDefault();
+            
+            const address = document.getElementById('address').value;
+            const phone = document.getElementById('phone').value;
+            
+            if (!address || !phone) {
+                showNotification('Please fill in all required fields', 'error');
+                return;
+            }
+            
+            try {
+                const response = await fetch('/api/orders/create', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    credentials: 'include', // Include session cookies with request
+                    body: JSON.stringify({
+                        address: address,
+                        phone: phone
+                    })
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    showNotification('Order placed successfully!', 'success');
+                    
+                    // Redirect to order confirmation or back to menu
+                    setTimeout(() => {
+                        window.location.href = 'menu.html';
+                    }, 1500);
+                } else {
+                    const errorData = await response.json();
+                    showNotification(errorData.error || 'Failed to place order', 'error');
+                }
+            } catch (error) {
+                console.error('Error placing order:', error);
+                showNotification('Error placing order', 'error');
+            }
+        }
+        
+        // Show notification function (if not already defined in main.js)
+        if (typeof showNotification === 'undefined') {
+            function showNotification(message, type = 'info') {
+                // Remove existing notification if any
+                const existingNotification = document.querySelector('.notification');
+                if (existingNotification) {
+                    existingNotification.remove();
+                }
+                
+                const notification = document.createElement('div');
+                notification.className = `notification notification-${type}`;
+                notification.textContent = message;
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 100px;
+                    right: 20px;
+                    padding: 15px 25px;
+                    background: ${type === 'success' ? '#28A745' : type === 'error' ? '#DC3545' : '#17A2B8'};
+                    color: white;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                    z-index: 10000;
+                    animation: slideInRight 0.3s ease;
+                `;
+                
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.style.animation = 'slideOutRight 0.3s ease';
+                    setTimeout(() => notification.remove(), 300);
+                }, 3000);
+            }
+            
+            // Add animation styles if not already present
+            if (!document.querySelector('#notification-styles')) {
+                const style = document.createElement('style');
+                style.id = 'notification-styles';
+                style.textContent = `
+                    @keyframes slideInRight {
+                        from { transform: translateX(100%); opacity: 0; }
+                        to { transform: translateX(0); opacity: 1; }
+                    }
+                    @keyframes slideOutRight {
+                        from { transform: translateX(0); opacity: 1; }
+                        to { transform: translateX(100%); opacity: 0; }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        }
+        
+
+    </script>
+</body>
+</html>

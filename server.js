@@ -17,15 +17,14 @@ app.use(cors({
 
 const MONGO_URI = process.env.MONGO_URI;
 
-// Connect to MongoDB with proper options for serverless environments
 mongoose.connect(MONGO_URI, { 
     useNewUrlParser: true, 
     useUnifiedTopology: true,
-    serverSelectionTimeoutMS: 50000,  // Keep trying to send operations for 50 seconds
-    socketTimeoutMS: 45000,         // Close sockets after 45 seconds of inactivity
-    bufferCommands: false,          // Disable mongoose buffering
-    bufferMaxEntries: 0,            // Disable mongoose buffering
-    maxPoolSize: 10,                // Maintain up to 10 socket connections
+    serverSelectionTimeoutMS: 50000,  
+    socketTimeoutMS: 45000,         
+    bufferCommands: false,          
+    bufferMaxEntries: 0,            
+    maxPoolSize: 10,                
 })
 .then(() => {
     console.log('Connected to MongoDB!');
@@ -35,7 +34,7 @@ mongoose.connect(MONGO_URI, {
     console.error('Connection string used:', MONGO_URI);
 });
 
-// Handle connection events
+
 mongoose.connection.on('error', (err) => {
     console.error('MongoDB connection error:', err);
 });
@@ -44,7 +43,7 @@ mongoose.connection.on('disconnected', () => {
     console.log('MongoDB disconnected');
 });
 
-// Graceful shutdown
+
 process.on('SIGINT', () => {
     mongoose.connection.close(() => {
         console.log('MongoDB connection closed through app termination');

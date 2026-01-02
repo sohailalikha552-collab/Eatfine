@@ -9,7 +9,7 @@
   ],
   "env": {
     "MONGO_URI": "@mongo_uri",
-    "SESSION_SECRET": "@session_secret",
+    "SESSION_SECRET": "63f4945d921d599f27ae4fdf5bada3f1",
     "NODE_ENV": "production"
   },
   "functions": {
